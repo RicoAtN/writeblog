@@ -117,9 +117,9 @@ app.get("/login", function(req, res){
   res.render("login");
 });
 
-app.get("/register", function(req, res){
-  res.render("register");
-});
+// app.get("/register", function(req, res){
+//   res.render("register");
+// });
 
 app.get("/logout", function(req, res){
   req.logout();
@@ -145,21 +145,21 @@ app.get("/compose", function(req, res){
   }
 });
 
-// Able to register user
-app.post("/register", function (req, res) {
+// // Able to register user
+// app.post("/register", function (req, res) {
 
-  User.register({username: req.body.username}, req.body.password, function(err, user){
-    if (err) {
-      console.log(err);
-      res.redirect("/register");
-    } else {
-      passport.authenticate("local")(req, res, function(){
-        res.redirect("/compose");
-      });
-    }
-  });
+//   User.register({username: req.body.username}, req.body.password, function(err, user){
+//     if (err) {
+//       console.log(err);
+//       res.redirect("/register");
+//     } else {
+//       passport.authenticate("local")(req, res, function(){
+//         res.redirect("/compose");
+//       });
+//     }
+//   });
 
-});
+// });
 
 // Able to receive login input
 app.post("/login", function (req, res) {
