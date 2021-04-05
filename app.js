@@ -5,6 +5,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const session = require('express-session');
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
 const _ = require('lodash');
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -18,18 +23,60 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+// Setup session for active logins
+app.use(session({
+  secret: "Our little secret weehee.",
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: "https://rico.ngo/auth/google/compose",
+  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+},
+function(accessToken, refreshToken, profile, cb) {
+  // console.log(profile);
+
+  User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
 // Connect with MongoDB Atlas
 mongoose.connect("mongodb+srv://RicoN:test12345@cluster0.g1jhf.mongodb.net/RicoPersonalWebsite?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set("useCreateIndex", true);
 
 // Create DB schema to login - master user
 
-const userSchema = {
+const userSchema = new mongoose.Schema ({
   email: String,
-  password: String
-};
+  password: String,
+  googleId: String
+});
+
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 // Add Mongoose user model based on this schema
 const User = new mongoose.model("MasterUser", userSchema);
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 // Create DB schema for blogs
 const blogSchema = {
@@ -70,42 +117,68 @@ app.get("/login", function(req, res){
   res.render("login");
 });
 
-app.get("/register", function(req, res){
-  res.render("register");
+// app.get("/register", function(req, res){
+//   res.render("register");
+// });
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
 });
 
-// Able to register user
-app.post("/register", function (req, res) {
-  const newUser = new User({
-    email: req.body.username,
-    password: req.body.password
+app.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
+
+app.get("/auth/google/compose",
+  passport.authenticate('google', { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect to secrets.
+    res.redirect("/compose");
   });
 
-  newUser.save(function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("compose");
-    }
-  });
+app.get("/compose", function(req, res){
+  if (req.isAuthenticated()){
+    res.render("compose");
+  } else {
+    res.redirect("/login");
+  }
 });
+
+// // Able to register user
+// app.post("/register", function (req, res) {
+
+//   User.register({username: req.body.username}, req.body.password, function(err, user){
+//     if (err) {
+//       console.log(err);
+//       res.redirect("/register");
+//     } else {
+//       passport.authenticate("local")(req, res, function(){
+//         res.redirect("/compose");
+//       });
+//     }
+//   });
+
+// });
 
 // Able to receive login input
 app.post("/login", function (req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
 
-  User.findOne({email: username}, function (err, foundUser) {
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  req.login(user, function(err){
     if (err) {
       console.log(err);
     } else {
-      if (foundUser) {
-        if (foundUser.password === password) {
-          res.render("compose");
-        }
-      }
+      passport.authenticate("local")(req, res, function(){
+        res.redirect("/compose");
+      });
     }
   });
+
 });
 
 // Receive Post blog post
