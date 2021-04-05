@@ -1,5 +1,6 @@
 //jshint esversion:6
 
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -20,7 +21,17 @@ app.use(express.static("public"));
 // Connect with MongoDB Atlas
 mongoose.connect("mongodb+srv://RicoN:test12345@cluster0.g1jhf.mongodb.net/RicoPersonalWebsite?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 
-// Create DB schema
+// Create DB schema to login - master user
+
+const userSchema = {
+  email: String,
+  password: String
+};
+
+// Add Mongoose user model based on this schema
+const User = new mongoose.model("MasterUser", userSchema);
+
+// Create DB schema for blogs
 const blogSchema = {
   title: {
     type: String,
@@ -29,13 +40,8 @@ const blogSchema = {
   content: String
 };
 
-// Add Mongoose model based on this schema
+// Add Mongoose blog model based on this schema
 const Blog = mongoose.model("blogscollection", blogSchema);
-
-
-// //  All blog posts
-
-// let allPosts = [];
 
 // Render pages
 
@@ -60,12 +66,46 @@ app.get("/contact", function(req, res) {
   });
 });
 
-app.get("/compose", function(req, res) {
-  res.render("compose");
-});
-
 app.get("/login", function(req, res){
   res.render("login");
+});
+
+app.get("/register", function(req, res){
+  res.render("register");
+});
+
+// Able to register user
+app.post("/register", function (req, res) {
+  const newUser = new User({
+    email: req.body.username,
+    password: req.body.password
+  });
+
+  newUser.save(function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("compose");
+    }
+  });
+});
+
+// Able to receive login input
+app.post("/login", function (req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  User.findOne({email: username}, function (err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (foundUser) {
+        if (foundUser.password === password) {
+          res.render("compose");
+        }
+      }
+    }
+  });
 });
 
 // Receive Post blog post
