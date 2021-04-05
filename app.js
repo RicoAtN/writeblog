@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const _ = require('lodash');
 
@@ -33,20 +33,20 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new GoogleStrategy({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://rico.ngo/auth/google/compose",
-  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-},
-function(accessToken, refreshToken, profile, cb) {
-  // console.log(profile);
+// passport.use(new GoogleStrategy({
+//   clientID: process.env.CLIENT_ID,
+//   clientSecret: process.env.CLIENT_SECRET,
+//   callbackURL: "https://rico.ngo/auth/google/compose",
+//   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+// },
+// function(accessToken, refreshToken, profile, cb) {
+//   // console.log(profile);
 
-  User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
+//   User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//     return cb(err, user);
+//   });
+// }
+// ));
 
 // Connect with MongoDB Atlas
 mongoose.connect("mongodb+srv://RicoN:test12345@cluster0.g1jhf.mongodb.net/RicoPersonalWebsite?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
@@ -56,8 +56,8 @@ mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
   email: String,
-  password: String,
-  googleId: String
+  password: String
+  // googleId: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -117,25 +117,25 @@ app.get("/login", function(req, res){
   res.render("login");
 });
 
-// app.get("/register", function(req, res){
-//   res.render("register");
-// });
+app.get("/register", function(req, res){
+  res.render("register");
+});
 
 app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
 });
 
-app.get("/auth/google",
-  passport.authenticate('google', { scope: ["profile"] })
-);
+// app.get("/auth/google",
+//   passport.authenticate('google', { scope: ["profile"] })
+// );
 
-app.get("/auth/google/compose",
-  passport.authenticate('google', { failureRedirect: "/login" }),
-  function(req, res) {
-    // Successful authentication, redirect to secrets.
-    res.redirect("/compose");
-  });
+// app.get("/auth/google/compose",
+//   passport.authenticate('google', { failureRedirect: "/login" }),
+//   function(req, res) {
+//     // Successful authentication, redirect to secrets.
+//     res.redirect("/compose");
+//   });
 
 app.get("/compose", function(req, res){
   if (req.isAuthenticated()){
@@ -145,21 +145,21 @@ app.get("/compose", function(req, res){
   }
 });
 
-// // Able to register user
-// app.post("/register", function (req, res) {
+// Able to register user
+app.post("/register", function (req, res) {
 
-//   User.register({username: req.body.username}, req.body.password, function(err, user){
-//     if (err) {
-//       console.log(err);
-//       res.redirect("/register");
-//     } else {
-//       passport.authenticate("local")(req, res, function(){
-//         res.redirect("/compose");
-//       });
-//     }
-//   });
+  User.register({username: req.body.username}, req.body.password, function(err, user){
+    if (err) {
+      console.log(err);
+      res.redirect("/register");
+    } else {
+      passport.authenticate("local")(req, res, function(){
+        res.redirect("/compose");
+      });
+    }
+  });
 
-// });
+});
 
 // Able to receive login input
 app.post("/login", function (req, res) {
