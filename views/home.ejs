@@ -1,10 +1,16 @@
 <!-- EJS Header -->
 <%- include("partials/header") -%> 
 
-<!-- Main content -->
+<!-- Main headliner -->
+<section id="title">
+<div class="container-fluid main-background">
 
 <h1>Home</h1>
 <p><%= firstParagraph %> </p>
+
+</div>
+</section>
+<!-- Blog content -->
 
 <div>
     <% blogContents.forEach(function(individualPost) { %>
