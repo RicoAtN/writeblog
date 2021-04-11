@@ -72,8 +72,8 @@ body {
 	text-align: center;
 	bottom: 0;
 	width: 100%;
+    max-width: 1350px;
 	height: 60px;
-	background-color: #1abc9c;
 }
 
 .footer p {
