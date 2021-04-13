@@ -25,30 +25,32 @@ body {
 .rico-logo {
     background-image: url(../images/rico-logo.png);
     background-repeat: no-repeat;
-    width: 300px;
-    height: 50px;
+    width: 250px;
+    height: 40px;
+    background-size: contain;
+    margin-left: 16px;
 }
 
 .home-intro-text {
-    color: white;
+    color: rgb(255, 255, 255);
     margin-left:0px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+
 }
 
 .home-text-background {
-    background-color: rgb(214, 174, 98);
-    opacity: 80%;
-    width: 460px;
+    background-color: rgb(241, 169, 34);
+    opacity: 90%;
+    width: 440px;
     margin: 32px;
-    padding-top: 8px;
-    padding-bottom:8px;
+    padding-top: 4px;
+    padding-bottom:4px;
     transform: rotate(5deg)
 }
 /* .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
 } */
-
 
 .navbar {
     padding-top: 15px;
