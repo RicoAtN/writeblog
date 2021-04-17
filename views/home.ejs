@@ -5,13 +5,92 @@
 <section id="title" class= "main-background p-3 ">
 
 <div class="container-fluid row-full home-intro-text home-text-background">
-<h2>Building great products</h2>
-<h2>together.</h2>
+<h2>Building better products</h2>
 <p><%= firstParagraph %> </p>
 </div>
 </section>
-<!-- Blog content -->
 
+<!-- What can you find here -->
+
+
+<div class="container py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom text-center">Get to know me</h2>
+    <div class="row g-5 py-5">
+      <div class="feature col-md-4">
+        <div class="feature-icon bg-primary bg-gradient">
+        </div>
+        <h2>Who I am</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+            More information
+        </a>
+      </div>
+      <div class="feature col-md-4">
+        <div class="feature-icon bg-primary bg-gradient">
+        </div>
+        <h2>My portfolio</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+            More information
+        </a>
+      </div>
+      <div class="feature col-md-4">
+        <div class="feature-icon bg-primary bg-gradient">
+        </div>
+        <h2>Product blogs</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          More information
+        </a>
+      </div>
+    </div>
+  </div>
+
+<!-- Contact -->
+
+<div class="content py-5  bg-light background-color-home-page">
+    <div class="container">
+        <div class="row">
+              <div class="col-md-6 offset-md-3">
+                        <span class="anchor" id="formContact"></span>
+                        <!-- form user info -->
+                        <div class="card card-outline-secondary">
+                            <div class="card-header">
+                                <h3 class="mb-0">Contact</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form" role="form" autocomplete="off">
+                                    <fieldset>
+                                        <label for="name2" class="mb-0">Name</label>
+                                        <div class="row mb-1">
+                                            <div class="col-lg-12">
+                                                <input type="text" name="name2" id="name2" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <label for="email2" class="mb-0">Email</label>
+                                        <div class="row mb-1">
+                                            <div class="col-lg-12">
+                                                <input type="text" name="email2" id="email2" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <label for="message2" class="mb-0">Message</label>
+                                        <div class="row mb-1">
+                                            <div class="col-lg-12">
+                                                <textarea rows="6" name="message2" id="message2" class="form-control" required=""></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-secondary btn-lg float-right">Send Message</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /form user info -->
+    
+                    </div>
+        </div>
+
+<!-- Blog content -->
+<!-- 
 <div style="margin-left: 16px;">
     <% blogContents.forEach(function(individualPost) { %>
 
@@ -23,7 +102,7 @@
 
     <% }); %>
     
-</div>
+</div> -->
 
 <!-- EJS Footer -->
 <%- include("partials/footer") -%> 
