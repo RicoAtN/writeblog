@@ -118,9 +118,12 @@ app.get("/contact", function(req, res) {
 });
 
 app.get("/blogs", function(req, res) {
-  res.render("blogs", {
-    firstParagraph: blogsContent
-  });
+
+  Blog.find({}, function(err, blogs){
+    res.render("blogs", {
+      firstParagraph: blogsContent, blogContents: blogs
+    }); 
+  })
 });
 
 app.get("/portfolio", function(req, res) {

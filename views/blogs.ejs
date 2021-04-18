@@ -6,5 +6,20 @@
 <h1>My Product Management blogs</h1>
 <p><%= firstParagraph %> </p>
 
+<!-- Blog content  -->
+
+<div style="margin-left: 16px;">
+    <% blogContents.forEach(function(individualPost) { %>
+
+        <div>
+            <h1><%= individualPost.title %> </h1>
+            <p> <%= individualPost.content.substring(0, 100)+"..." %> 
+            <a href="/posts/<%= individualPost._id %>">Read more</a> </p>
+        </div>
+
+    <% }); %>
+    
+</div>
+
 <!-- EJS Footer -->
 <%- include("partials/footer") -%> 
