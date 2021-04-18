@@ -13,6 +13,19 @@ body {
     max-width: 1350px;
    }
 
+.header-background {
+    background-color:#F6F5F5;
+}
+
+.footer-background {
+    background-color:#276678;
+}
+
+.page-section-background {
+    background-color: #F6F5F5;
+}
+
+
 .main-background {
     background-image: url(../images/rico-background2.jpg);
     height: 600px;
@@ -39,12 +52,8 @@ body {
 
 }
 
-.background-color-home-page {
-    background-color: #FFDE7D;
-}
-
 .home-text-background {
-    background-color: rgb(241, 169, 34);
+    background-color: #276678;
     opacity: 90%;
     width: 400px;
     margin: 32px;
@@ -86,7 +95,7 @@ body {
 .footer p {
 	margin-top: 25px;
 	font-size: 12px;
-  color: #fff;
+    color: #fff;
 }
 
 @media (max-width: 1028px)  {
