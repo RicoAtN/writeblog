@@ -34,7 +34,72 @@ h1,h2,h3,h4,h5,h6{
     background-color: #276678;
 }
 
+.rico-logo {
+  background-image: url(../images/rico-logo.png);
+  background-repeat: no-repeat;
+  width: 250px;
+  height: 40px;
+  background-size: contain;
+  margin-left: 16px;
+}
+.refit-logo {
+padding-left: 1rem;
+}
+/* .container-fluid {
+  padding-top: 70px;
+  padding-bottom: 70px;
+} */
 
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px; 
+}
+.navbar-nav  li a:hover {
+  color: #1abc9c !important;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.footer-padding {
+padding-bottom: 60px;
+}
+
+.footer {
+position: fixed;
+text-align: center;
+display: inline-block;
+vertical-align: middle;
+line-height: normal;
+bottom: 0;
+width: 100%;
+max-width: 1350px;
+height: 60px;
+}
+
+.nav-link {
+  font-family: "Montserrat-Light";
+  font-size: 1rem;
+}
+
+.footer p {
+margin-top: 25px;
+font-size: 12px;
+}
+
+@media (max-width: 1028px)  {
+  #title .big-heading{
+      text-align: center;
+  }
+}
+
+/* Home page */
 .main-background {
     background-image: url(../images/rico-background2.jpg);
     height: 600px;
@@ -42,88 +107,32 @@ h1,h2,h3,h4,h5,h6{
     background-size: cover;
     background-position: center center;
     opacity: 70%;
-    
-}
-
-
-.rico-logo {
-    background-image: url(../images/rico-logo.png);
-    background-repeat: no-repeat;
-    width: 250px;
-    height: 40px;
-    background-size: contain;
-    margin-left: 16px;
 }
 
 .home-intro-text {
-    color: rgb(255, 255, 255);
-    margin-left:0px;
-    font-size: 1.2rem;
-
+  color: rgb(255, 255, 255);
+  margin-left:0px;
+  font-size: 1.2rem;
 }
 
 .home-text-background {
-    background-color: #276678;
-    opacity: 90%;
-    width: 400px;
-    margin: 32px;
-    padding-top: 4px;
-    padding-bottom:4px;
-    transform: rotate(5deg)
-}
-/* .container-fluid {
-    padding-top: 70px;
-    padding-bottom: 70px;
-} */
-
-.navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 0;
-    border-radius: 0;
-    margin-bottom: 0;
-    font-size: 12px;
-    letter-spacing: 5px; 
-}
-.navbar-nav  li a:hover {
-    color: #1abc9c !important;
+  background-color: #276678;
+  opacity: 90%;
+  width: 400px;
+  margin: 32px;
+  padding-top: 4px;
+  padding-bottom:4px;
+  transform: rotate(5deg)
 }
 
-.navbar .navbar-collapse {
-    text-align: center;
-  }
+/* About page */
 
-.footer-padding {
-	padding-bottom: 60px;
+.style-about-photo {
+  min-width: 200px;
+  max-height: 800px;
 }
 
-.footer {
-	position: fixed;
-	text-align: center;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-	bottom: 0;
-	width: 100%;
-  max-width: 1350px;
-	height: 60px;
-}
 
-.nav-link {
-    font-family: "Montserrat-Light";
-    font-size: 1rem;
-}
-
-.footer p {
-	margin-top: 25px;
-	font-size: 12px;
-}
-
-@media (max-width: 1028px)  {
-    #title .big-heading{
-        text-align: center;
-    }
-}
 
 /* Courosel CSS */
 

@@ -13,10 +13,9 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require('mongoose-findorcreate');
 const _ = require('lodash');
 
-
-
 const homeStartingContent = "I am Rico, a tech product manager. I help organisations to build the best-in-class software products.";
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
+const aboutContent2 = "Lekker bezig hoor";
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 const blogsContent = "bla bla"
 const portfolioContent = "bla bla 3"
@@ -24,8 +23,10 @@ const portfolioContent = "bla bla 3"
 const app = express();
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(express.static(__dirname + '/public'));
 
 // Setup session for active logins
 app.use(session({
@@ -53,12 +54,15 @@ app.use(passport.session());
 // ));
 
 // Connect with MongoDB Atlas
-mongoose.connect("mongodb+srv://RicoN:test12345@cluster0.g1jhf.mongodb.net/RicoPersonalWebsite?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://RicoN:test12345@cluster0.g1jhf.mongodb.net/RicoPersonalWebsite?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 mongoose.set("useCreateIndex", true);
 
 // Create DB schema to login - master user
 
-const userSchema = new mongoose.Schema ({
+const userSchema = new mongoose.Schema({
   email: String,
   password: String
   // googleId: String
@@ -72,12 +76,12 @@ const User = new mongoose.model("MasterUser", userSchema);
 
 passport.use(User.createStrategy());
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
@@ -96,43 +100,46 @@ const Blog = mongoose.model("blogscollection", blogSchema);
 
 // Render pages
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
 
-  Blog.find({}, function(err, blogs){
+  Blog.find({}, function (err, blogs) {
     res.render("home", {
-      firstParagraph: homeStartingContent, blogContents: blogs
-    }); 
+      firstParagraph: homeStartingContent,
+      blogContents: blogs
+    });
   })
 });
 
-app.get("/about", function(req, res) {
+app.get("/about", function (req, res) {
   res.render("about", {
-    firstParagraph: aboutContent
+    firstParagraph: aboutContent,
+    secondParagraph: aboutContent2
   });
 });
 
-app.get("/contact", function(req, res) {
+app.get("/contact", function (req, res) {
   res.render("contact", {
     firstParagraph: contactContent
   });
 });
 
-app.get("/blogs", function(req, res) {
+app.get("/blogs", function (req, res) {
 
-  Blog.find({}, function(err, blogs){
+  Blog.find({}, function (err, blogs) {
     res.render("blogs", {
-      firstParagraph: blogsContent, blogContents: blogs
-    }); 
+      firstParagraph: blogsContent,
+      blogContents: blogs
+    });
   })
 });
 
-app.get("/portfolio", function(req, res) {
+app.get("/portfolio", function (req, res) {
   res.render("portfolio", {
     firstParagraph: portfolioContent
   });
 });
 
-app.get("/login", function(req, res){
+app.get("/login", function (req, res) {
   res.render("login");
 });
 
@@ -140,7 +147,7 @@ app.get("/login", function(req, res){
 //   res.render("register");
 // });
 
-app.get("/logout", function(req, res){
+app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
@@ -156,8 +163,8 @@ app.get("/logout", function(req, res){
 //     res.redirect("/compose");
 //   });
 
-app.get("/compose", function(req, res){
-  if (req.isAuthenticated()){
+app.get("/compose", function (req, res) {
+  if (req.isAuthenticated()) {
     res.render("compose");
   } else {
     res.redirect("/login");
@@ -188,11 +195,11 @@ app.post("/login", function (req, res) {
     password: req.body.password
   });
 
-  req.login(user, function(err){
+  req.login(user, function (err) {
     if (err) {
       console.log(err);
     } else {
-      passport.authenticate("local")(req, res, function(){
+      passport.authenticate("local")(req, res, function () {
         res.redirect("/compose");
       });
     }
@@ -203,13 +210,13 @@ app.post("/login", function (req, res) {
 // Receive Post blog post
 
 app.post("/compose", function (req, res) {
-  const newBlog = new Blog ({
+  const newBlog = new Blog({
     title: req.body.postTitleBlog,
     content: req.body.postContentBlog
   });
-  
-  newBlog.save(function(err){
-    if (!err){
+
+  newBlog.save(function (err) {
+    if (!err) {
       res.redirect("/");
     }
   });
@@ -218,10 +225,12 @@ app.post("/compose", function (req, res) {
 
 // Get individual posts - per page
 
-app.get("/posts/:postId", function(req, res) {
+app.get("/posts/:postId", function (req, res) {
   const requestedPostId = req.params.postId;
 
-  Blog.findOne({_id: requestedPostId}, function(err, newPost){
+  Blog.findOne({
+    _id: requestedPostId
+  }, function (err, newPost) {
     res.render("post", {
       title: newPost.title,
       content: newPost.content
@@ -234,6 +243,6 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
-app.listen(port, function(){
+app.listen(port, function () {
   console.log("Server started on port 8000");
 });
