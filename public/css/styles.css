@@ -118,11 +118,12 @@ font-size: 12px;
 .home-text-background {
   background-color: #276678;
   opacity: 90%;
-  width: 320px;
-  margin: 24px;
+  width: 310px;
+  margin: 16px;
   padding-top: 4px;
   padding-bottom:4px;
-  transform: rotate(5deg)
+  transform: rotate(5deg);
+  font-size: 1rem;
 }
 
 /* About page */
