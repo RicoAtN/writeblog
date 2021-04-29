@@ -13,9 +13,12 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require('mongoose-findorcreate');
 const _ = require('lodash');
 
+// Main text content per page
+
 const homeStartingContent = "I am Rico, a tech product manager. I help organisations to build the best-in-class software products.";
 const aboutContent = "Hopefully my home page didn't spoil too much information about myself, but I am Rico Ngo, a Dutchman with Chinese & Vietnamese roots. In my daily life, I am a tech product manager at Company Webcast (a Euronext Company) where I get to build a great product product team and the next-gen webcast platform.";
-const aboutContent2 = "I graduated from Rotterdam School of Management (RSM) with a MSc Strategic Management degree and had the possibility to study in the United States & China as an intern. With this knowledge, I decided to pursue a career in Product Management, which I still love to do till this day.";
+const aboutContent2 = "I started my career in Product Management at eVision Industry Software (now Enablon/Wolters Kluwer), where I get to manage my own product team and create a product from scratch in collaboration with major companies, such as Exxon, Shell, and BP. After that, I decided to pursue a start-up adventure to be the product lead of Woov, a live music platform. Despite the pandemic, I got to build a great product that enabled monetization of our business model through digital payment & music right tracking. "
+const aboutContent3 = "Living in Rotterdam, I graduated from Rotterdam School of Management (RSM) with a MSc Strategic Management degree and had the possibility to study in the United States & China as an intern. With this knowledge, I decided to pursue a career in Product Management, which I still love to do till this day.";
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 const blogsContent = "bla bla"
 const portfolioContent = "bla bla 3"
@@ -113,7 +116,8 @@ app.get("/", function (req, res) {
 app.get("/about", function (req, res) {
   res.render("about", {
     firstParagraph: aboutContent,
-    secondParagraph: aboutContent2
+    secondParagraph: aboutContent2,
+    thirdParagraph: aboutContent3
   });
 });
 
