@@ -126,6 +126,10 @@ font-size: 12px;
   font-size: 1rem;
 }
 
+.contact-form {
+  max-width: 720px;
+}
+
 /* About page */
 
 .style-about-photo {

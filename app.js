@@ -250,3 +250,48 @@ if (port == null || port == "") {
 app.listen(port, function () {
   console.log("Server started on port 8000");
 });
+
+// Send & receive contact forms
+
+app.post("/", function (req, res) {
+  const nameContact = req.body.inputNameContact
+  const emailContact = req.body.inputEmailContact
+  const messageContact = req.body.inputMessageContact
+
+  const data = {
+      members: [
+          {
+              name: nameContact,
+              email_address: emailContact,
+              message: messageContact,
+              // status: "subscribed"
+          }
+      ]
+  }
+
+  const jSONData = JSON.stringify(data)
+
+  const url = "https://us7.api.mailchimp.com/3.0/lists/3197007214"
+
+  const options = {
+      method: "POST",
+      auth: "FromRicoByMail:b1b931e76294e89769d1a2981c3330dc-us7"
+  };
+
+  const request = https.request(url, options, function(response) {
+
+    if (response.statusCode === 200) {
+        res.sendFile(__dirname + "/success.html");
+    } else {
+        res.sendFile(___dirname + "/failure.html");
+    }
+
+    response.on("data", function(data){
+        console.log(JSON.parse(data), response.statusCode);
+    })
+})
+
+request.write(jSONData);
+request.end();
+
+});

@@ -148,8 +148,22 @@
   <div class="content py-5">
     <h1 class="text-center">Interested in my work or want to collaborate?</h1>
     <h2 class="pb-3 text-center">Lets get in touch and leave your message.</h2>
-    <div class="container text-center">
-      <iframe src="https://us7.list-manage.com/contact-form?u=0b05fd54715de02f415cd02fd&form_id=36323048a532ae66e1fe257b49808f59" height="875" width="600" title="Iframe Example"></iframe>
+    <div class="container text-center contact-form">
+      <form class="p-5 border rounded-3 bg-light">
+        <div class="form-floating mb-3">
+          <input name="inputNameContact" type="text" class="form-control" id="floatingInput" placeholder="John Wick">
+          <label for="floatingInput"> Your name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input name="inputEmailContact" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput"> Your email address</label>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" id="floatingInput">Your message</label>
+          <textarea name="inputMessageContact" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Send it!</button>
+      </form>
       <!-- <div class="elfsight-app-6b9a4b34-c60e-44c6-ba3d-0ed7302e71d9"></div>
             </div> -->
 </section>
