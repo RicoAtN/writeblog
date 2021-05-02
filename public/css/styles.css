@@ -18,12 +18,12 @@ h1,h2,h3,h4,h5,h6{
    }
 
 .nav-background {
-    background-color:#F6F5F5;
+    background-color:#c7c0c0;
 }
 
 .footer-background {
-    background-color:#276678;
-    color: white;
+    background-color:#c7c0c0;
+    color: black
 }
 
 .page-section-background {
@@ -32,6 +32,7 @@ h1,h2,h3,h4,h5,h6{
 
 .page-section-background2 {
     background-color: #276678;
+    color: white;
 }
 
 .rico-logo {
@@ -99,6 +100,10 @@ font-size: 12px;
   }
 }
 
+.featurette-divider2 {
+  margin: 3rem 0;
+}
+
 /* Home page */
 .main-background {
     background-image: url(../images/rico-background2.jpg);
@@ -145,6 +150,10 @@ font-size: 12px;
 }
 
 .about-me-icons {
+  color:#F6F5F5
+}
+
+.home-icons {
   color:#276678
 }
 
@@ -229,3 +238,6 @@ font-size: 12px;
       margin-top: 7rem;
     }
   }
+
+  /* Features icon set - about me */
+  
