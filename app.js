@@ -147,6 +147,10 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
+app.get("/portfolio/barriermanagement", function (req, res) {
+  res.render("barriermanagement");
+});
+
 // app.get("/register", function(req, res){
 //   res.render("register");
 // });
