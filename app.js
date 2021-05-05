@@ -147,8 +147,35 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
+// render portfolio pages
+
 app.get("/portfolio/barriermanagement", function (req, res) {
-  res.render("barriermanagement");
+  res.render("portfolioitems/barriermanagement");
+});
+
+app.get("/portfolio/riskbowtie", function (req, res) {
+  res.render("portfolioitems/riskbowtie");
+});
+
+app.get("/portfolio/livemusicplatform", function (req, res) {
+  res.render("portfolioitems/livemusicplatform");
+});
+
+
+app.get("/portfolio/digitalpayment", function (req, res) {
+  res.render("portfolioitems/digitalpayment");
+});
+
+app.get("/portfolio/musicrighttool", function (req, res) {
+  res.render("portfolioitems/musicrighttool");
+});
+
+app.get("/portfolio/webcastplatform", function (req, res) {
+  res.render("portfolioitems/webcastplatform");
+});
+
+app.get("/portfolio/selfservice", function (req, res) {
+  res.render("portfolioitems/selfservice");
 });
 
 // app.get("/register", function(req, res){
