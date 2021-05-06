@@ -6,5 +6,26 @@
 <h1>Contact</h1>
 <p><%= firstParagraph %> </p>
 
+<a href="https://www.linkedin.com/in/rico-ngo/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+
+<section class="page-section-background">
+    <div class="content py-5">
+      <h1 class="text-center">Interested in my work or want to collaborate?</h1>
+      <h2 class="pb-3 text-center">Lets get in touch and leave a message.</h2>
+      <div class="container text-center contact-form">
+        <form class="p-5 border rounded-3 bg-light" action="https://formspree.io/f/xzbydwrk" method="POST">
+          <div class="mb-3 text-start">
+            <label class="pb-2" for="floatingInput"> Your email address</label>
+            <input name="_replyto" type="email" class="form-control" id="floatingInput" placeholder="johnwick@continental.com">
+          </div>
+          <div class="mb-3 text-start">
+            <label class="form-label" id="floatingInput">Your message</label>
+            <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="My dog has gone missing. Where can I find my dog?"></textarea>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary page-section-background2" type="submit">Send it!</button>
+        </form>
+              
+  </section>
+
 <!-- EJS Footer -->
 <%- include("partials/footer") -%> 

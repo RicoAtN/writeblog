@@ -147,27 +147,24 @@
 <section class="page-section-background">
   <div class="content py-5">
     <h1 class="text-center">Interested in my work or want to collaborate?</h1>
-    <h2 class="pb-3 text-center">Lets get in touch and leave your message.</h2>
+    <h2 class="pb-3 text-center">Lets get in touch and leave a message.</h2>
     <div class="container text-center contact-form">
-      <form class="p-5 border rounded-3 bg-light">
-        <div class="form-floating mb-3">
-          <input name="inputNameContact" type="text" class="form-control" id="floatingInput" placeholder="John Wick">
-          <label for="floatingInput"> Your name</label>
+      <form class="p-5 border rounded-3 bg-light" action="https://formspree.io/f/xzbydwrk" method="POST">
+        <div class="mb-3 text-start">
+          <label class="pb-2" for="floatingInput"> Your email address</label>
+          <input name="_replyto" type="email" class="form-control" id="floatingInput" placeholder="johnwick@continental.com">
         </div>
-        <div class="form-floating mb-3">
-          <input name="inputEmailContact" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput"> Your email address</label>
-        </div>
-        <div class="mb-3">
+        <div class="mb-3 text-start">
           <label class="form-label" id="floatingInput">Your message</label>
-          <textarea name="inputMessageContact" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="My dog has gone missing. Where can I find my dog?"></textarea>
         </div>
         <button class="w-100 btn btn-lg btn-primary page-section-background2" type="submit">Send it!</button>
       </form>
+
       <!-- <div class="elfsight-app-6b9a4b34-c60e-44c6-ba3d-0ed7302e71d9"></div>
             </div> -->
-</section>
 
+</section>
 
 <!-- EJS Footer -->
 <%- include("partials/footer") -%>
