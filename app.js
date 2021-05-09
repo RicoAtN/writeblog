@@ -20,14 +20,14 @@ const aboutContent = "Hopefully my home page didn't spoil too much information a
 const aboutContent2 = "I started my career in Product Management at eVision Industry Software (now Enablon/Wolters Kluwer), where I get to manage my own product team and create a product from scratch in collaboration with major companies, such as Exxon, Shell, and BP. After that, I decided to pursue a start-up adventure to be the product lead of Woov, a live music platform. Despite the pandemic, I got to build a great product that enabled monetization of our business model through digital payment & music right tracking. "
 const aboutContent3 = "Living in Rotterdam, I graduated from Rotterdam School of Management (RSM) with a MSc Strategic Management degree and had the possibility to study in the United States & China as an intern. With this knowledge, I decided to pursue a career in Product Management, which I still love to do till this day.";
 const contactContent = "If you're interested in my work or what I can do, please reach out to me. As you can see in the picture, I have a state-of-the-art office to receive your messages. Leave a message below or contact me on other platforms.";
-const blogsContent = "bla bla"
+const blogsContent = "On this page, I will share my product knowledge, experiences, and insights with the community through blogs. The audience is aimed at people who are new at product management and want to pursue their career in this field. Content is still WIP. Sign up your email here and I will update you on my first articles."
 const portfolioContent = "I have worked on different products & projects in my Product Management career. Most of them I did it as a Product Owner, Product Manager, and Product Lead at start-ups and scale-ups orgs. Also, I would like to take on more product consulting gigs. Cotnact me if you're interested."
 
 const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true 
 }));
 app.use(express.static(__dirname + '/public'));
 
@@ -273,6 +273,57 @@ app.get("/posts/:postId", function (req, res) {
   });
 
 });
+
+
+// Sign-up with mailchimp
+
+app.post("/blogs", function (req, res) {
+  const fullName = req.body.fullName
+  const email = req.body.email
+
+  console.log(fullName, email)
+
+  const data = {
+      members: [
+          {
+              email_address: email,
+              full_name: fullName,
+              status: "subscribed"
+          }
+      ]
+  }
+
+  const jSONData = JSON.stringify(data)
+
+  const url = "https://us7.api.mailchimp.com/3.0/lists/3197007214"
+
+  const options = {
+      method: "POST",
+      auth: "FromRicoByMail:b1b931e76294e89769d1a2981c3330dc-us7"
+  }
+  
+  // const request = https.request(url, options, function(response) {
+
+  //     if (response.statusCode === 200) {
+  //         res.sendFile(__dirname + "/contact.ejs");
+  //     } else {
+  //         res.sendFile(___dirname + "/failure.html");
+  //     }
+
+  //     response.on("data", function(data){
+  //         console.log(JSON.parse(data), response.statusCode);
+  //     })
+  // })
+
+  // request.write(jSONData);
+  // request.end();
+
+});
+
+app.post("/failure", function(req, res) {
+  res.redirect("/");
+});
+
 
 let port = process.env.PORT;
 if (port == null || port == "") {

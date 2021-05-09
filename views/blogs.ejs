@@ -3,23 +3,98 @@
 
 <!-- Main content -->
 
-<h1>My Product Management blogs</h1>
-<p><%= firstParagraph %> </p>
+<div class="container col-xl-10 col-xxl-9 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+      <div class="col-lg-5 text-center text-lg-start">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Sign up for my product blogs.</h1> 
+        <h3 class="display-8 mb-3"><span class="text-muted">This page is under construction.</span></h3>
+        <p><%= firstParagraph %></p>
+      </div>
+      <div class="col-8 mx-auto col-lg-6 text-center">
+        <form action="/blogs" method="POST" class="p-5 border rounded-3 bg-light">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="fullName" name="fullName" required>
+                <label for="floatingInput">Your name</label>
+              </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" required>
+            <label for="floatingInput">Your email</label>
+          </div>
+          <button class="w-50 btn btn-lg btn-primary" type="submit">Sign me up!</button>
+          <hr class="my-4">
+          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
 
-<!-- Blog content  -->
+<!-- Grid overview what you can find here -->
 
-<div style="margin-left: 16px;">
-    <% blogContents.forEach(function(individualPost) { %>
-
+<section class="page-section-background">
+<div class="container py-5" id="icon-grid">
+    <h2 class="display-6 fw-bold lh-1 mb-3 text-center">Product topics you will find here</h2>
+  
+    <div class="row row-cols-4 g-4 py-5">
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
         <div>
-            <h1><%= individualPost.title %> </h1>
-            <p> <%= individualPost.content.substring(0, 100)+"..." %> 
-            <a href="/posts/<%= individualPost._id %>">Read more</a> </p>
+          <h4 class="fw-bold mb-0">Building a MVP</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
         </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">PM & PO</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Working with design</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#home"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Roadmap setup</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#speedometer2"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Customer insight</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#toggles2"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Working with devs</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#geo-fill"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">Marketing & pricing</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#tools"/></svg>
+        <div>
+          <h4 class="fw-bold mb-0">PM process</h4>
+          <p>Paragraph of text beneath the heading to explain the heading.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <% }); %>
-    
-</div>
 
 <!-- EJS Footer -->
 <%- include("partials/footer") -%> 
