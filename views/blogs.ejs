@@ -13,11 +13,15 @@
       <div class="col-8 mx-auto col-lg-6 text-center">
         <form action="/blogs" method="POST" class="p-5 border rounded-3 bg-light">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="fullName" name="fullName" required>
-                <label for="floatingInput">Your name</label>
+                <input type="text" class="form-control" name="fName" required>
+                <label for="floatingInput">Your first name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="lName" required>
+                <label for="floatingInput">Your last name</label>
               </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" name="email" required>
             <label for="floatingInput">Your email</label>
           </div>
           <button class="w-50 btn btn-lg btn-primary" type="submit">Sign me up!</button>

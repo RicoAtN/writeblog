@@ -6,6 +6,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const https = require("https");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -277,53 +278,54 @@ app.get("/posts/:postId", function (req, res) {
 
 // Sign-up with mailchimp
 
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/blogs")
+})
+
 app.post("/blogs", function (req, res) {
-  const fullName = req.body.fullName
+  const firstName = req.body.fName
+  const lastName = req.body.lName
   const email = req.body.email
 
-  console.log(fullName, email)
-
   const data = {
-      members: [
-          {
-              email_address: email,
-              full_name: fullName,
-              status: "subscribed"
-          }
-      ]
+    members: [
+      {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName
+        }
+      }
+    ]
   }
 
-  const jSONData = JSON.stringify(data)
+  const jSONData = JSON.stringify(data);
 
   const url = "https://us7.api.mailchimp.com/3.0/lists/3197007214"
 
   const options = {
-      method: "POST",
-      auth: "FromRicoByMail:b1b931e76294e89769d1a2981c3330dc-us7"
-  }
-  
-  // const request = https.request(url, options, function(response) {
+    method: "POST",
+    auth: "FromRicoByMail:1548d8c255eb38e49a10132031e2be21-us7"
+}
 
-  //     if (response.statusCode === 200) {
-  //         res.sendFile(__dirname + "/contact.ejs");
-  //     } else {
-  //         res.sendFile(___dirname + "/failure.html");
-  //     }
+  const request = https.request(url, options, function(response) {
 
-  //     response.on("data", function(data){
-  //         console.log(JSON.parse(data), response.statusCode);
-  //     })
-  // })
+    if (response.statusCode === 200) {
+            res.sendFile(__dirname + "/success.html");
+        } else {
+            res.sendFile(___dirname + "/failure.html");
+        }
 
-  // request.write(jSONData);
-  // request.end();
+    response.on("data", function(data){
+      console.log(JSON.parse(data));
+    })
+  })
+
+  request.write(jSONData);
+  request.end();
 
 });
-
-app.post("/failure", function(req, res) {
-  res.redirect("/");
-});
-
 
 let port = process.env.PORT;
 if (port == null || port == "") {
