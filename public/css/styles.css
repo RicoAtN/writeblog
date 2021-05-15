@@ -159,6 +159,23 @@ font-size: 12px;
   color:#276678
 }
 
+/* youtube video */
+
+.video-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+  min-height:700px
+}
+
+.video-responsive iframe{
+    left:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
 /* Courosel CSS */
 
 
