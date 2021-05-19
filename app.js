@@ -179,6 +179,17 @@ app.get("/portfolio/selfservice", function (req, res) {
   res.render("portfolioitems/selfservice");
 });
 
+
+// blogs mail letter sign up
+
+app.get("/blogs/signupsuccess", function (req, res) {
+  res.render("signupsuccess");
+});
+
+app.get("/blogs/signupfailure", function (req, res) {
+  res.render("signupfailure");
+});
+
 // app.get("/register", function(req, res){
 //   res.render("register");
 // });
@@ -306,15 +317,15 @@ app.post("/blogs", function (req, res) {
 
   const options = {
     method: "POST",
-    auth: "FromRicoByMail:1548d8c255eb38e49a10132031e2be21-us7"
+    auth: "FromRicoByMail:dcfdeb437a849431df0b758273e77707-us7"
 }
 
   const request = https.request(url, options, function(response) {
 
     if (response.statusCode === 200) {
-            res.sendFile(__dirname + "/success.html");
+         res.render("signupsuccess");
         } else {
-            res.sendFile(___dirname + "/failure.html");
+          res.render("failure");
         }
 
     response.on("data", function(data){
