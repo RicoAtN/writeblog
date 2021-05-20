@@ -22,7 +22,7 @@ const aboutContent2 = "I started my career in Product Management at eVision Indu
 const aboutContent3 = "Living in Rotterdam, I graduated from Rotterdam School of Management (RSM) with a MSc Strategic Management degree and had the possibility to study in the United States & China as an intern. With this knowledge, I decided to pursue a career in Product Management, which I still love to do till this day.";
 const contactContent = "If you're interested in my work or what I can do, please reach out to me. As you can see in the picture, I have a state-of-the-art office to receive your messages. Leave a message below or contact me on other platforms.";
 const blogsContent = "On this page, I will share my product knowledge, experiences, and insights with the community through blogs. The audience is aimed at people who are new at product management and want to pursue their career in this field. Content is still WIP. Sign up your email here and I will update you on my first articles."
-const portfolioContent = "I have worked on different products & projects in my Product Management career. Most of them I did it as a Product Owner, Product Manager, and Product Lead at start-ups and scale-ups orgs. Also, I would like to take on more product consulting gigs. Cotnact me if you're interested."
+const portfolioContent = "I have worked on different products & projects in my Product Management career. Most of them I did it as a Product Owner, Product Manager, and Product Lead at start-ups and scale-ups orgs. Also, I would like to take on more product consulting gigs. Contact me if you're interested."
 
 const app = express();
 app.set('view engine', 'ejs');

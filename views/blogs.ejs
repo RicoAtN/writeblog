@@ -10,21 +10,22 @@
         <h3 class="display-8 mb-3"><span class="text-muted">This page is under construction.</span></h3>
         <p><%= firstParagraph %></p>
       </div>
-      <div class="col-8 mx-auto col-lg-6 text-center">
+      <div class="mx-auto col-lg-6">
         <form action="/blogs" method="POST" class="p-5 border rounded-3 bg-light">
-            <div class="form-floating mb-3">
+          <h1 class="display-8 lh-1 mb-3">Sign up here</h1> 
+            <div class="mb-3">
+              <label for="floatingInput">Your first name</label>
                 <input type="text" class="form-control" name="fName" required>
-                <label for="floatingInput">Your first name</label>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="lName" required>
+              <div class="mb-3">
                 <label for="floatingInput">Your last name</label>
+                <input type="text" class="form-control" name="lName" required>
               </div>
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" name="email" required>
+          <div class="mb-3">
             <label for="floatingInput">Your email</label>
+            <input type="email" class="form-control" name="email" required>
           </div>
-          <button class="w-50 btn btn-lg btn-primary" type="submit">Sign me up!</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
           <hr class="my-4">
           <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
         </form>
@@ -36,9 +37,9 @@
 
 <section class="page-section-background">
 <div class="container py-5" id="icon-grid">
-    <h2 class="display-6 fw-bold lh-1 mb-3 text-center">Product topics you will find here</h2>
+    <h2 class="display-6 fw-bold lh-1 mb-3 text-center border-bottom">Product topics you will find here</h2>
   
-    <div class="row row-cols-4 g-4 py-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
       <div class="col d-flex align-items-start">
         <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
         <div>
