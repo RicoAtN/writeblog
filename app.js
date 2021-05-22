@@ -16,13 +16,13 @@ const _ = require('lodash');
 
 // Main text content per page
 
-const homeStartingContent = "I am Rico, a tech product manager. I help organisations to build the best-in-class software products.";
-const aboutContent = "Hopefully my home page didn't spoil too much information about myself, but I am Rico Ngo, a Dutchman with Chinese & Vietnamese roots. In my daily life, I am a tech product manager at Company Webcast (a Euronext Company) where I get to build a great product team and the next-gen webcast platform.";
+const homeStartingContent = "I am Rico, a tech product manager that loves to build new stuff. I help companies to build great products.";
+const aboutContent = "Hopefully my home page didn't spoil too much information about myself, but I am Rico Ngo, 30 summers of age, and a Dutchman with Chinese & Vietnamese roots. In my daily life, I am a tech product manager at Company Webcast (a Euronext Company) where I get to build a great product team and the next-gen webcast platform.";
 const aboutContent2 = "I started my career in Product Management at eVision Industry Software (now Enablon/Wolters Kluwer), where I get to manage my own product team and create a product from scratch in collaboration with major companies, such as Exxon, Shell, and BP. After that, I decided to pursue a start-up adventure to be the product lead of Woov, a live music platform. Despite the pandemic, we enhanced the platform that enabled monetization of our business model through digital payment & music right tracking. "
 const aboutContent3 = "Living in Rotterdam, I graduated from Rotterdam School of Management (RSM) with a MSc Strategic Management degree and had the possibility to study in the United States & China as an intern. With this knowledge, I decided to pursue a career in Product Management, which I still love to do till this day.";
 const contactContent = "If you're interested in my work or what I can do, please reach out to me. As you can see in the picture, I have a state-of-the-art office to receive your messages. Leave a message below or contact me on other platforms.";
 const blogsContent = "On this page, I will share my product knowledge, experiences, and insights with the community through blogs. The audience is aimed at people who are new at product management and want to pursue their career in this field. Content is still WIP. Sign up your email here and I will update you on my first articles."
-const portfolioContent = "I have worked on different products & projects in my Product Management career. Most of them I did it as a Product Owner, Product Manager, and Product Lead at start-ups and scale-ups orgs. Also, I would like to take on more product consulting gigs. Contact me if you're interested."
+const portfolioContent = "I have worked on different products & projects in my Product Management career. Most of them I did it as a Product Manager, Product Lead, and Product Owner at start-ups and scale-ups orgs. Besides building great products, I also passionated about building great product teams. If you want my advise or work with me, don't hesitate to contact me."
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -317,7 +317,7 @@ app.post("/blogs", function (req, res) {
 
   const options = {
     method: "POST",
-    auth: "FromRicoByMail:dcfdeb437a849431df0b758273e77707-us7"
+    auth: process.env.MAIL_CHIMP_API
 }
 
   const request = https.request(url, options, function(response) {
@@ -325,7 +325,7 @@ app.post("/blogs", function (req, res) {
     if (response.statusCode === 200) {
          res.render("signupsuccess");
         } else {
-          res.render("failure");
+          res.render("signupfailure");
         }
 
     response.on("data", function(data){
