@@ -314,10 +314,13 @@ app.post("/blogs", function (req, res) {
   const jSONData = JSON.stringify(data);
 
   const url = "https://us7.api.mailchimp.com/3.0/lists/3197007214"
+  const mailChimpAccount = "FromRicoByMail:"
+  const mailChimpKey1 = "7cbac0b48cf969e566"
+  const mailChimpKey2 = "6958c369d993d0-us7"
 
   const options = {
     method: "POST",
-    auth: process.env.MAIL_CHIMP_API
+    auth: mailChimpAccount+mailChimpKey1+mailChimpKey2
 }
 
   const request = https.request(url, options, function(response) {
